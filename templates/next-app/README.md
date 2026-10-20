@@ -1,6 +1,6 @@
 # My splitch app
 
-Created with `create-splitch-app` and built on [`@splitch/ui`](https://github.com/OWNER/splitch-ui).
+Created with `create-splitch-app` and built on [`@splitch/ui`](https://github.com/dustinusey/splitch-ui).
 
 ```bash
 npm install

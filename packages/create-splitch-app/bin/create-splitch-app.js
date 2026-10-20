@@ -6,8 +6,8 @@ import { parseArgs } from "node:util";
 import { COLORS, SWATCH } from "../src/palette.js";
 import { select } from "../src/select.js";
 
-// ⚠️ Replace OWNER with the GitHub user/org that hosts the splitch-ui repo.
-const DEFAULT_UI_SPEC = "github:OWNER/splitch-ui#semver:^0.1.0";
+// ⚠️ Replace dustinusey with the GitHub user/org that hosts the splitch-ui repo.
+const DEFAULT_UI_SPEC = "github:dustinusey/splitch-ui#semver:^0.1.0";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const TEMPLATE = path.resolve(here, "../../../templates/next-app");

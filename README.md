@@ -2,7 +2,6 @@
 
 This is the design system for every splitch app and website. It has warm neutral surfaces, soft large-radius shapes, thin icons, roomy type and a swappable brand color. It's built on Tailwind v4 and shadcn/ui.
 
-> **Before you use it:** replace `OWNER` everywhere in this README, in `templates/next-app/package.json`, in `templates/next-app/README.md` and in `DEFAULT_UI_SPEC` in `packages/create-splitch-app/bin/create-splitch-app.js` with the GitHub user or org that hosts this repo. The repo must be named `splitch-ui`, or you change that name in the same places.
 
 ## Repo layout
 
@@ -19,25 +18,25 @@ This is the design system for every splitch app and website. It has warm neutral
 └── scripts/release.mjs          # bump + build + commit + tag
 ```
 
-**Why the root is the installable package:** npm can't install a subfolder of a git repo. When a project depends on `github:OWNER/splitch-ui`, npm installs the repo root. The root `package.json` maps `@splitch/ui` and `@splitch/ui/styles.css` to the committed `packages/ui/dist`. It has no `prepare` script, so installing it from git is fast and doesn't build anything.
+**Why the root is the installable package:** npm can't install a subfolder of a git repo. When a project depends on `github:dustinusey/splitch-ui`, npm installs the repo root. The root `package.json` maps `@splitch/ui` and `@splitch/ui/styles.css` to the committed `packages/ui/dist`. It has no `prepare` script, so installing it from git is fast and doesn't build anything.
 
 ## Make a new project
 
 ```bash
-npx github:OWNER/splitch-ui my-app             # asks for the brand color (arrow keys, palette only)
-npx github:OWNER/splitch-ui my-app --color purple
-npx github:OWNER/splitch-ui#v0.1.0 my-app      # pin a CLI/template version
+npx github:dustinusey/splitch-ui my-app             # asks for the brand color (arrow keys, palette only)
+npx github:dustinusey/splitch-ui my-app --color purple
+npx github:dustinusey/splitch-ui#v0.1.0 my-app      # pin a CLI/template version
 cd my-app && npm install && npm run dev
 ```
 
 - **Colors:** `blue, purple, green, red, cyan, orange, pink, teal`. There's no free text and no `neutral`. Any other `--color` value exits with an error. Without a TTY you must pass `--color`.
-- **What gets written:** the CLI writes the color as `<html data-accent="…">` and `<Providers defaultAccent="…">` in `src/app/layout.tsx`. It also adds `"@splitch/ui": "github:OWNER/splitch-ui#semver:^0.1.0"` to `package.json`. Use `--ui <spec>` to override that spec (for example a fork, a tag, or `git+file:///path/to/repo` for local testing).
-- **The bin:** the bin is also `create-splitch-app`, so `npx -p github:OWNER/splitch-ui create-splitch-app my-app` works too.
+- **What gets written:** the CLI writes the color as `<html data-accent="…">` and `<Providers defaultAccent="…">` in `src/app/layout.tsx`. It also adds `"@splitch/ui": "github:dustinusey/splitch-ui#semver:^0.1.0"` to `package.json`. Use `--ui <spec>` to override that spec (for example a fork, a tag, or `git+file:///path/to/repo` for local testing).
+- **The bin:** the bin is also `create-splitch-app`, so `npx -p github:dustinusey/splitch-ui create-splitch-app my-app` works too.
 
 ### Using it in an existing Next.js + Tailwind v4 app
 
 ```bash
-npm install "@splitch/ui@github:OWNER/splitch-ui#semver:^0.1.0"
+npm install "@splitch/ui@github:dustinusey/splitch-ui#semver:^0.1.0"
 ```
 
 ```css
@@ -67,7 +66,7 @@ import { Button, ChatBubble, Composer, ThemeToggle, toast } from "@splitch/ui";
 npm update @splitch/ui      # picks the highest vX.Y.Z tag that satisfies the range in package.json (^0.1.0)
 npm ls @splitch/ui          # check the installed version
 # move to a new major/minor range:
-npm install "@splitch/ui@github:OWNER/splitch-ui#semver:^0.2.0"
+npm install "@splitch/ui@github:dustinusey/splitch-ui#semver:^0.2.0"
 ```
 
 The lockfile pins the exact commit, so builds are reproducible until you run `npm update`. I tested this with a local git remote: `npm update` moved from 0.1.0 to 0.1.1 after a `v0.1.1` tag was added.
