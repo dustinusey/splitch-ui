@@ -1,0 +1,10 @@
+{
+  "name": "create-splitch-app",
+  "version": "0.1.0",
+  "description": "Scaffold a new Next.js project on @splitch/ui.",
+  "license": "MIT",
+  "type": "module",
+  "bin": { "create-splitch-app": "bin/create-splitch-app.js" },
+  "files": ["bin", "src"],
+  "engines": { "node": ">=18.17" }
+}

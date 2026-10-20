@@ -1,0 +1,218 @@
+@import "tw-animate-css";
+@import "./shadcn.css";
+
+/* Let Tailwind scan this package's compiled components for class names. */
+@source "./";
+
+/* dark: applies inside .dark, but not inside a .light scope nested in .dark
+   (and vice versa) so light & dark previews can render side by side. */
+@custom-variant dark {
+  &:where(.dark, .dark *):not(:where(.dark .light, .dark .light *)) {
+    @slot;
+  }
+  &:where(.light .dark, .light .dark *) {
+    @slot;
+  }
+}
+
+/* ------------------------------------------------------------------
+   splitch ui kit — design tokens
+   Colors sampled from reference screenshots (see README).
+   ------------------------------------------------------------------ */
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --font-heading: var(--font-sans);
+
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  --color-brand: var(--brand);
+  --color-brand-foreground: var(--brand-foreground);
+  --color-brand-soft: var(--brand-soft);
+  --color-bubble: var(--bubble);
+  --color-bubble-foreground: var(--bubble-foreground);
+  --color-composer: var(--composer);
+  --color-unread: var(--unread);
+  --color-subtle-foreground: var(--subtle-foreground);
+
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+  --radius-bubble: var(--radius-bubble-token);
+  --radius-composer: var(--radius-composer-token);
+
+  /* palette (static) */
+  --color-mark-blue: var(--mark-blue);
+  --color-mark-purple: var(--mark-purple);
+  --color-mark-green: var(--mark-green);
+  --color-mark-red: var(--mark-red);
+  --color-mark-cyan: var(--mark-cyan);
+  --color-mark-orange: var(--mark-orange);
+  --color-mark-pink: var(--mark-pink);
+  --color-mark-teal: var(--mark-teal);
+  --color-mark-neutral: var(--mark-neutral);
+}
+
+:root,
+.light {
+  color-scheme: light;
+  /* Accent palette — shared by both modes */
+  --mark-blue: #0d64c1;
+  --mark-purple: #6e43c1;
+  --mark-green: #16a34a;
+  --mark-red: #e5303f;
+  --mark-cyan: #0891b2;
+  --mark-orange: #ea7a12;
+  --mark-pink: #db2777;
+  --mark-teal: #0fa38f;
+  --mark-neutral: #0a0a0a;
+
+  --radius: 0.75rem;
+  --radius-bubble-token: 1.375rem;   /* ~22px bubbles */
+  --radius-composer-token: 1.5rem;   /* ~24px composer */
+
+  /* Light — warm off-white (sampled) */
+  --background: #f9f8f7;
+  --foreground: #0d0c0b;
+  --sidebar: #f6f3f2;
+  --sidebar-foreground: #1a1918;
+  --sidebar-accent: #eceae9;          /* active row */
+  --sidebar-accent-foreground: #0d0c0b;
+  --sidebar-border: #ebe8e6;
+  --sidebar-primary: var(--brand);
+  --sidebar-primary-foreground: var(--brand-foreground);
+  --sidebar-ring: var(--brand);
+
+  --bubble: #f0efed;                  /* incoming bubble */
+  --bubble-foreground: #0d0c0b;
+  --composer: #ffffff;
+  --unread: #0690ff;
+
+  --card: #ffffff;
+  --card-foreground: #0d0c0b;
+  --popover: #ffffff;
+  --popover-foreground: #0d0c0b;
+  --primary: var(--brand);
+  --primary-foreground: var(--brand-foreground);
+  --secondary: #f0efed;
+  --secondary-foreground: #0d0c0b;
+  --muted: #f0efed;
+  --muted-foreground: #5f5c59;
+  --subtle-foreground: #8a8784;
+  --accent: #eceae9;
+  --accent-foreground: #0d0c0b;
+  --destructive: #e5303f;
+  --border: #e6e3e1;
+  --input: #e6e3e1;
+  --ring: color-mix(in oklab, var(--brand) 60%, transparent);
+  --chart-1: var(--mark-blue);
+  --chart-2: var(--mark-purple);
+  --chart-3: var(--mark-green);
+  --chart-4: var(--mark-orange);
+  --chart-5: var(--mark-red);
+
+}
+
+/* Default accent (lives on :root only so nested .light/.dark scopes inherit the chosen accent) */
+:root {
+  --brand: var(--mark-blue);
+  --brand-foreground: #ffffff;
+  --brand-soft: color-mix(in oklab, var(--brand) 14%, transparent);
+}
+
+.dark {
+  color-scheme: dark;
+  /* Dark — near-black warm (sampled) */
+  --background: #131211;
+  --foreground: #f4f3f2;
+  --sidebar: #181716;
+  --sidebar-foreground: #ecebea;
+  --sidebar-accent: #2a2928;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: #252424;
+
+  --bubble: #201f1d;
+  --bubble-foreground: #f4f3f2;
+  --composer: #201f1d;
+  --unread: #299fff;
+
+  --card: #1b1a19;
+  --card-foreground: #f4f3f2;
+  --popover: #201f1d;
+  --popover-foreground: #f4f3f2;
+  --secondary: #2a2928;
+  --secondary-foreground: #f4f3f2;
+  --muted: #232220;
+  --muted-foreground: #a3a09d;
+  --subtle-foreground: #7d7a77;
+  --accent: #2a2928;
+  --accent-foreground: #ffffff;
+  --border: #2a2928;
+  --input: #2f2e2c;
+  --mark-neutral: #fcfcfc;
+}
+
+/* Swappable accent: <html data-accent="purple"> */
+[data-accent="blue"]   { --brand: var(--mark-blue); }
+[data-accent="purple"] { --brand: var(--mark-purple); }
+[data-accent="green"]  { --brand: var(--mark-green); }
+[data-accent="red"]    { --brand: var(--mark-red); }
+[data-accent="cyan"]   { --brand: var(--mark-cyan); }
+[data-accent="orange"] { --brand: var(--mark-orange); }
+[data-accent="pink"]   { --brand: var(--mark-pink); }
+[data-accent="teal"]   { --brand: var(--mark-teal); }
+
+/* Scoped theme wrappers paint their own surface/text. */
+.light, .dark {
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply font-sans;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "cv11", "ss01";
+  }
+}
