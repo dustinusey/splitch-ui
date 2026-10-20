@@ -72,7 +72,7 @@ async function main() {
   if (!existsSync(TEMPLATE)) fail(`Template not found at ${TEMPLATE}`);
   cpSync(TEMPLATE, target, {
     recursive: true,
-    filter: (src) => !/[\\/](node_modules|\.next)([\\/]|$)/.test(src),
+    filter: (src) => !/(^|[\\/])(node_modules|\.next)([\\/]|$)/.test(path.relative(TEMPLATE, src)),
   });
   if (existsSync(path.join(target, "_gitignore"))) renameSync(path.join(target, "_gitignore"), path.join(target, ".gitignore"));
 
